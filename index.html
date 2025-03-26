@@ -10,7 +10,101 @@
   <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <style>
-    /* ... 省略: スタイルはそのまま ... */
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f9fafb;
+      margin: 0;
+      padding: 1rem;
+      color: #333;
+      transition: background 0.3s, color 0.3s;
+    }
+    body.dark {
+      background: #1e293b;
+      color: #f1f5f9;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 0.25rem;
+    }
+    #intro {
+      text-align: center;
+      font-size: 0.95rem;
+      color: #666;
+      margin-bottom: 1rem;
+    }
+    #controls {
+      text-align: center;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+    #controls button {
+      padding: 0.5rem 1rem;
+      margin: 0.25rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 6px;
+      background-color: #3b82f6;
+      color: white;
+      cursor: pointer;
+    }
+    #controls .toggle-dark {
+      background-color: #0f172a;
+    }
+    .node {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      padding: 1rem;
+      margin: 1rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+      transition: background 0.3s, color 0.3s;
+    }
+    body.dark .node {
+      background: #334155;
+      color: #f8fafc;
+    }
+    .node::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -1.5rem;
+      width: 1.5rem;
+      height: 100%;
+      border-left: 2px dashed #ccc;
+    }
+    .node input {
+      width: 100%;
+      font-size: 1rem;
+      margin-top: 0.5rem;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid #ccc;
+      color: inherit;
+    }
+    .children {
+      margin-left: 2rem;
+      padding-left: 1rem;
+    }
+    .buttons {
+      margin-top: 0.5rem;
+    }
+    .buttons button {
+      margin-right: 0.5rem;
+    }
+    .delete-btn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: #f87171;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 2px 6px;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
@@ -26,6 +120,7 @@
   </div>
   <div id="tree"></div>
 
+  <!-- JS スクリプトは元のまま -->
   <script>
     let nodeId = 0;
     function createNode(text = '', color = '') {
